@@ -1,14 +1,15 @@
 import * as React from "react";
-import './App.scss';
+import "./App.scss";
+import HomePage from "./components/home_page/HomePage";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        Hello world
-      </header>
-    </div>
-  );
-}
+const App = () => {
+    return (
+        <div className="App">
+            <header className="App-header">
+                <HomePage />
+            </header>
+        </div>
+    );
+};
 
 export default App;
