@@ -1,27 +1,27 @@
 import * as React from "react";
 import './HomePage.scss';
+//import { ReactComponent } from "*.svg";
+import { Button } from '@material-ui/core';
 
 function HomePage() {
     return (
         <div className="HomePage">
-            <button>-</button>
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
+                Ez egy webes alkalmazás, ami segít a tanulásban kártyák segítségével. Az alkalmazás lényege, hogy bárki létrehozhat
+                tanulókártyákat kategóriákba szedve, amit a létrehozó fél és az alkalmazás többi felhasználója is szabadon segítségül
+                hívhat tanulása során. Az alkalmazás a jól ismert tanulókártyás módszereken felül pontrendszert alkalmaz a következő kártyák
+                előfordulásának gyakoriságának meghatározására.
             </p>
-            <button>Témák</button>
-            <button>Új téma létrehozása</button>
+            <Button>Témák</Button>
+            <Button>Új téma létrehozása</Button>
             <p>Ajánlott témák: </p>
-            <button>Analízis 1</button>
+            <Button>Analízis 1</Button>
             <br />
-            <button>Logika</button>
+            <Button>Logika</Button>
             <br />
-            <button>Analízis 100</button>
+            <Button>Analízis 100</Button>
             <br />
-            <button>...</button>
+            <Button>...</Button>
             <br />
         </div>
     );
