@@ -2,6 +2,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
+### `You can use this project dockerized with it's backend`
+Step into the [backend repo's](https://github.com/paramakk/K-A-M-K-K-frontend) folder, and run the _docker-compose run_ command
+#### `You have to have this repo in the same folder, where the backend's repo is at.` 
+
 In the project directory, you can run:
 
 ### `npm start`
