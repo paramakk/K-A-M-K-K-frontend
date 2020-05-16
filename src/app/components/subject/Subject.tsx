@@ -1,10 +1,14 @@
 import * as React from "react";
-import './HomePage.scss';
-import {Link} from "react-router-dom";
+import "./Subject.scss";
+import { FC } from "react";
+import { useParams, Link } from "react-router-dom";
 
-function HomePage() {
+type Props = {};
+
+const Subject: FC<Props> = () => {
+    const { id } = useParams();
     return (
-        <div className="HomePage">
+        <div className="Subject">
             <p>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -12,14 +16,10 @@ function HomePage() {
                 fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est laborum.
             </p>
-            <button>Témák</button>
-            <button>Új téma létrehozása</button>
-            <p>Ajánlott témák: </p>
-            <Link to="temak/1">Analízis 1</Link>
-            <Link to="temak/2">Analízis 2</Link>
-            <Link to="temak/100">Analízis 100</Link>
+            <p>Témához tartozó szarok</p>
+            <Link to="/tanulas/1">első előadás</Link>
         </div>
     );
-}
+};
 
-export default HomePage;
+export default Subject;
