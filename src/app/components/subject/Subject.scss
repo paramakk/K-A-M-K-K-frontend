@@ -1,1 +1,20 @@
 .Subject{}
+.column {
+  float: left;
+  width: 50.00%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.button{
+  border: 3px solid #1C6EA4;
+  border-radius: 5px;
+  top: 0;
+  left: 0;
+  color: #000000;
+  text-decoration: none;
+}
