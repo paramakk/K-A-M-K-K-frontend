@@ -6,18 +6,17 @@ function HomePage() {
     return (
         <div className="HomePage">
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
+                Ez egy webes alkalmazás, ami segít a tanulásban kártyák segítségével. Az alkalmazás lényege, hogy bárki létrehozhat
+                tanulókártyákat kategóriákba szedve, amit a létrehozó fél és az alkalmazás többi felhasználója is szabadon segítségül
+                hívhat tanulása során. Az alkalmazás a jól ismert tanulókártyás módszereken felül pontrendszert alkalmaz a következő kártyák
+                előfordulásának gyakoriságának meghatározására.
             </p>
             <button>Témák</button>
             <button>Új téma létrehozása</button>
             <p>Ajánlott témák: </p>
-            <Link to="temak/1">Analízis 1</Link>
-            <Link to="temak/2">Analízis 2</Link>
-            <Link to="temak/100">Analízis 100</Link>
+            <Link to="temak/1">Analízis 1</Link><br/>
+            <Link to="temak/2">Analízis 2</Link><br/>
+            <Link to="temak/100">Analízis 100</Link><br/>
         </div>
     );
 }

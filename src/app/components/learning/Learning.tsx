@@ -1,8 +1,9 @@
 import * as React from "react";
 import "./Learning.scss";
 import mockCardGroup from "./mock/mockCardGroup";
-import { withRouter } from "react-router-dom";
+import { withRouter} from "react-router-dom";
 import { ComponentType } from "react";
+import { Link } from "react-router-dom";
 
 type Props = any;
 
@@ -65,6 +66,8 @@ class Learning extends React.PureComponent<Props, State> {
 
         return (
             <div className="Learning">
+                <Link to="/HomePage" className="button" style={{position: "absolute"}}>Vissza a főoldalra</Link>
+                <Link to="/temak/1" className="button">Vissza a témához</Link>
                 <div className="points">{pointsRepresentative}</div>
                 <div className="card-wrapper">
                     {!this.state.isLoading && this.state.questionAnswers[this.state.finished] && (
