@@ -1,0 +1,46 @@
+.TextInput{
+  text-align: left;
+
+
+  .label{
+    .required{
+      color: firebrick;
+    }
+  }
+  .input-container{
+    border: 1px solid lightgray;
+    padding: 5px 15px;
+    border-radius: 5px;
+    cursor: text;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: white;
+
+    .input-icon {
+      font-size: 21px;
+      color: firebrick;
+      padding-right: 7px;
+    }
+
+    input{
+      border: 0;
+      outline: none;
+      width: 100%;
+    }
+    &.disabled{
+      background-color: #ebebe4;
+      cursor: auto;
+      input {
+        color: lightgray;
+      }
+    }
+    &.error{
+      border: 1px solid firebrick;
+    }
+  }
+  .error{
+    color: firebrick;
+    font-weight: 600;
+  }
+}
