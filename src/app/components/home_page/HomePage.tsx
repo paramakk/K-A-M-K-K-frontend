@@ -2,6 +2,7 @@ import * as React from "react";
 import './HomePage.scss';
 //import { ReactComponent } from "*.svg";
 import { Button } from '@material-ui/core';
+import {Link} from "react-router-dom";
 
 function HomePage() {
     return (
@@ -15,14 +16,9 @@ function HomePage() {
             <Button>Témák</Button>
             <Button>Új téma létrehozása</Button>
             <p>Ajánlott témák: </p>
-            <Button>Analízis 1</Button>
-            <br />
-            <Button>Logika</Button>
-            <br />
-            <Button>Analízis 100</Button>
-            <br />
-            <Button>...</Button>
-            <br />
+            <Link to="temak/1">Analízis 1</Link>
+            <Link to="temak/2">Analízis 2</Link>
+            <Link to="temak/100">Analízis 100</Link>
         </div>
     );
 }
