@@ -9,6 +9,8 @@ type CardType = {
     id: number;
     question: string;
     answer: string;
+    changed?: boolean;
+    added?: boolean;
 };
 
 type Props = {};
@@ -50,6 +52,7 @@ class EditSubject extends React.PureComponent<Props, State> {
         onChange: (e: ChangeEvent<HTMLInputElement>) => {
             const cardsClone = [...this.state.cards];
             cardsClone[index][name] = e.target.value;
+            cardsClone[index]["changed"] = true;
             this.setState({ cards: cardsClone });
         }
     });
@@ -74,7 +77,7 @@ class EditSubject extends React.PureComponent<Props, State> {
                 <button
                     onClick={() =>
                         this.setState({
-                            cards: [...cards, { id: this.randomInt(-100000000000000, 0), answer: "", question: "" }]
+                            cards: [...cards, { id: this.randomInt(-100000000000000, 0), answer: "", question: "", added: true }]
                         })
                     }
                 >
