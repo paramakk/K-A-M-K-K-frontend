@@ -4,6 +4,8 @@ import TextInput from "../common/text_input/TextInput";
 import mockCardGroup from "../learning/mock/mockCardGroup";
 import { ChangeEvent, ComponentType } from "react";
 import { withRouter } from "react-router-dom";
+import { api } from "../../../utils/Api";
+import { CardGroupType } from "../../../types/ApiTypes";
 
 type CardType = {
     id: number;
@@ -13,19 +15,21 @@ type CardType = {
     added?: boolean;
 };
 
-type Props = {};
+type Props = {} & any;
 
 type State = {
     isLoading: boolean;
     cards: CardType[];
     password: string;
+    name: string;
 };
 
 class EditSubject extends React.PureComponent<Props, State> {
     state: State = {
         isLoading: true,
         cards: [],
-        password: ""
+        password: "",
+        name: ""
     };
 
     componentDidMount(): void {
@@ -34,15 +38,33 @@ class EditSubject extends React.PureComponent<Props, State> {
 
     queryCards = () => {
         this.setState({ isLoading: true }, async () => {
-            const response = await mockCardGroup.get("cardGroup");
-            this.setState({ cards: response.data as CardType[], isLoading: false });
+            const response: CardGroupType = await api.get(`card-groups/${this.props.match.params.id}`);
+            this.setState({ cards: response.cards, name: response.name, isLoading: false });
         });
     };
 
     saveCards = () => {
         this.setState({ isLoading: true }, async () => {
-            const response = await mockCardGroup.get("card");
-            this.setState({ cards: response.data as CardType[], isLoading: false });
+            const cardsToAdd: CardType[] = [];
+            const cardsToUpdate: CardType[] = [];
+            this.state.cards.forEach(card => {
+                if (card.added) cardsToAdd.push(card);
+                if (card.changed) cardsToUpdate.push(card);
+            });
+            try {
+                const responsePost = await api.post(`card-groups/${this.props.match.params.id}`, {
+                    cards: cardsToAdd,
+                    secret: this.state.password
+                });
+                const responsePatch = await api.patch(`card-groups/${this.props.match.params.id}`, {
+                    cards: cardsToUpdate,
+                    secret: this.state.password
+                });
+            } catch (e) {
+                console.log(e);
+            }
+
+            this.setState({ isLoading: false });
         });
     };
 
@@ -63,6 +85,11 @@ class EditSubject extends React.PureComponent<Props, State> {
         const { cards, password } = this.state;
         return (
             <div className="EditSubject">
+                <TextInput
+                    label="Név"
+                    value={this.state.name}
+                    onChange={e => this.setState({ name: e.target.value })}
+                />
                 {cards.map((card, index) => (
                     <div key={card.id} className="card">
                         <div className="title">{index + 1}. kártya</div>
@@ -77,7 +104,10 @@ class EditSubject extends React.PureComponent<Props, State> {
                 <button
                     onClick={() =>
                         this.setState({
-                            cards: [...cards, { id: this.randomInt(-100000000000000, 0), answer: "", question: "", added: true }]
+                            cards: [
+                                ...cards,
+                                { id: this.randomInt(-100000000000000, 0), answer: "", question: "", added: true }
+                            ]
                         })
                     }
                 >

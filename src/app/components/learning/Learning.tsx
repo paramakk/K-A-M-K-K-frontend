@@ -1,7 +1,7 @@
 import * as React from "react";
 import "./Learning.scss";
 import mockCardGroup from "./mock/mockCardGroup";
-import { withRouter} from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { ComponentType } from "react";
 import { Link } from "react-router-dom";
 
@@ -51,12 +51,7 @@ class Learning extends React.PureComponent<Props, State> {
     render() {
         const pointsRepresentative = [];
         const ratings = [];
-        for (let i = 0; i < this.state.finished; i++)
-            pointsRepresentative.push(
-                <div className="point" key={i}>
-                    pont
-                </div>
-            );
+        for (let i = 0; i < this.state.finished; i++) pointsRepresentative.push(<div className="point" key={i} />);
         for (let i = 1; i <= 5; i++)
             ratings.push(
                 <div className="rating" key={i} onClick={() => this.rateOnClick(i)}>
@@ -66,8 +61,12 @@ class Learning extends React.PureComponent<Props, State> {
 
         return (
             <div className="Learning">
-                <Link to="/HomePage" className="button" style={{position: "absolute"}}>Vissza a főoldalra</Link>
-                <Link to="/temak/1" className="button">Vissza a témához</Link>
+                <Link to="/HomePage" className="button" style={{ position: "absolute" }}>
+                    Vissza a főoldalra
+                </Link>
+                <Link to="/temak/1" className="button">
+                    Vissza a témához
+                </Link>
                 <div className="points">{pointsRepresentative}</div>
                 <div className="card-wrapper">
                     {!this.state.isLoading && this.state.questionAnswers[this.state.finished] && (
