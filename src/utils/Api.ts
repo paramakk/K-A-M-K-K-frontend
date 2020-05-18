@@ -1,10 +1,9 @@
 import axios, { AxiosInstance, AxiosResponse } from "axios";
-const get = require("lodash/get");
 
 export const api: AxiosInstance = axios.create({
-    baseURL: `localhost:8080/api/v1`,
+    baseURL: `http://localhost:8080/api/v1`,
     headers: {},
-    withCredentials: true,
+    withCredentials: false,
     timeout: 30000
 });
 

@@ -3,9 +3,9 @@ import "./Category.scss";
 import BasePage from "../common/base_page/BasePage";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import { CategoryType, ThemeType } from "../../../types/ApiTypes";
-import mockCategory from "./mock/mockCategory";
 import { PlusCircleIcon } from "react-line-awesome";
 import ThemeCard from "../common/cards/theme_card/ThemeCard";
+import {api} from "../../../utils/Api";
 const get = require("lodash/get");
 
 type Props = {} & RouteComponentProps<{ id: string }>;
@@ -22,7 +22,7 @@ class Category extends React.PureComponent<Props, State> {
     };
 
     async componentDidMount() {
-        const category = await mockCategory.get(`/categories/${this.props.match.params.id}`);
+        const category = await api.get(`/categories/${this.props.match.params.id}`);
         this.setState({ category: category.data, isLoading: false });
     }
 
@@ -32,7 +32,7 @@ class Category extends React.PureComponent<Props, State> {
             <BasePage className="Category">
                 {!isLoading && category && (
                     <>
-                        <h1 className="page-title">{category.name}</h1>
+                        <h1 className="page-title">{category.title}</h1>
                         <div className="page-subtitle">
                             {category.description} Az alábbi témákból választhatsz, és megnézheted az egyes tanulható
                             kártyacsoportot.

@@ -3,10 +3,8 @@ import "./Theme.scss";
 import { Link, withRouter } from "react-router-dom";
 import { CardGroupType, ThemeType } from "../../../types/ApiTypes";
 import BasePage from "../common/base_page/BasePage";
-import mockTheme from "./mock/mockTheme";
 import { EditIcon, TrashIcon, PlusCircleIcon } from "react-line-awesome";
-import mockCategory from "../category/mock/mockCategory";
-import mockCardGroup from "../learning/mock/mockCardGroup";
+import { api } from "../../../utils/Api";
 const get = require("lodash/get");
 
 type Props = any;
@@ -23,14 +21,14 @@ class Theme extends React.PureComponent<Props, State> {
     };
 
     async componentDidMount() {
-        const theme = await mockTheme.get(`/themes/${this.props.match.params.id}`);
+        const theme = await api.get(`/themes/${this.props.match.params.id}`);
         this.setState({ theme: theme.data, isLoading: false });
     }
 
     onDeleteCardGroup = (id: number) => {
-        try{
-            mockCardGroup.delete(`/card-groups/${id}`);
-        }catch (e) {
+        try {
+            api.delete(`/card-groups/${id}`);
+        } catch (e) {
             console.error(e);
         }
     };
@@ -41,9 +39,9 @@ class Theme extends React.PureComponent<Props, State> {
             <BasePage className="Subject">
                 {!isLoading && theme && (
                     <>
-                        <h1 className="page-title">{theme.name}</h1>
+                        <h1 className="page-title">{theme.title}</h1>
                         <div className="page-subtitle">
-                            Ezen az oldalon található a(z) {theme.name} témához tartozó kártyacsoportok. Ezek lehetnek
+                            Ezen az oldalon található a(z) {theme.title} témához tartozó kártyacsoportok. Ezek lehetnek
                             előadásonkként, vagy bármilyen kategóriába szedve. A "tanulás" gombra nyomva kártyánkként
                             tanulható az anyag, amit értékelni lehet 1-től 5-ig tartó skálán.
                         </div>
@@ -58,18 +56,23 @@ class Theme extends React.PureComponent<Props, State> {
                                             <Link key={cardGroup.id} className="label" to={`/tanulas/${cardGroup.id}`}>
                                                 {cardGroup.name}
                                             </Link>
-                                            <div className="card-count">{cardGroup.cards.length} kártya</div>
-                                            <div className="delete" onClick={() => this.onDeleteCardGroup(cardGroup.id)}>
+                                            <div className="card-count">{cardGroup.cards && cardGroup.cards.length} kártya</div>
+                                            <div
+                                                className="delete"
+                                                onClick={() => this.onDeleteCardGroup(cardGroup.id)}
+                                            >
                                                 <TrashIcon />
                                             </div>
-                                            <Link className="edit" to={`/kartya-csoport/${cardGroup.id}/szerkeztes`}>
+                                            <Link className="edit" to={`/kartya-csoport/${cardGroup.id}/szerkesztes`}>
                                                 <EditIcon />
                                             </Link>
                                         </div>
                                     </>
                                 ))}
                             <div className="card-group add">
-                                <Link to="/kartya-csoport/hozzaadas"><PlusCircleIcon/></Link>
+                                <Link to="/kartya-csoport/hozzaadas">
+                                    <PlusCircleIcon />
+                                </Link>
                             </div>
                         </div>
                     </>

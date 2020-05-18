@@ -4,7 +4,7 @@ import SectionCard from "../common/section_card/SectionCard";
 import BasePage from "../common/base_page/BasePage";
 import { Link } from "react-router-dom";
 import { CategoryType } from "../../../types/ApiTypes";
-import mockCategories from "./mock/mockCategories";
+import {api} from "../../../utils/Api";
 
 type Props = {};
 
@@ -20,7 +20,7 @@ class Categories extends React.PureComponent<Props, State> {
     };
 
     async componentDidMount() {
-        const categories = await mockCategories.get(`/categories/`);
+        const categories = await api.get(`/categories`);
         this.setState({ categories: categories.data, isLoading: false });
     }
 
@@ -33,7 +33,7 @@ class Categories extends React.PureComponent<Props, State> {
                 <div className="section-cards">
                 {!isLoading &&
                     categories.map(category => (
-                        <SectionCard key={category.id} title={category.name}>
+                        <SectionCard key={category.id} title={category.title}>
                             <div>{category.description}</div>
                             <Link className="link" to={`/kategoriak/${category.id}`}>
                                 Tovább a témáihoz
