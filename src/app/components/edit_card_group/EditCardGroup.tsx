@@ -3,11 +3,9 @@ import "./EditCardGroup.scss";
 import TextInput from "../common/text_input/TextInput";
 import { ChangeEvent, ComponentType } from "react";
 import { RouteComponentProps, withRouter } from "react-router-dom";
-import { api } from "../../../utils/Api";
-import { CardGroupType } from "../../../types/ApiTypes";
 import Button from "../common/button/Button";
 import BasePage from "../common/base_page/BasePage";
-import { PlusCircleIcon, PlusIcon } from "react-line-awesome";
+import { PlusCircleIcon } from "react-line-awesome";
 import mockCardGroup from "../learning/mock/mockCardGroup";
 
 const get = require("lodash/get");
@@ -57,14 +55,14 @@ class EditCardGroup extends React.PureComponent<Props, State> {
                 if (card.changed) cardsToUpdate.push(card);
             });
             try {
-                const responsePost = await api.post(`card-groups/${this.props.match.params.id}`, {
-                    cards: cardsToAdd,
-                    secret: this.state.password
-                });
-                const responsePatch = await api.patch(`card-groups/${this.props.match.params.id}`, {
-                    cards: cardsToUpdate,
-                    secret: this.state.password
-                });
+                // const responsePost = await api.post(`card-groups/${this.props.match.params.id}`, {
+                //     cards: cardsToAdd,
+                //     secret: this.state.password
+                // });
+                // const responsePatch = await api.patch(`card-groups/${this.props.match.params.id}`, {
+                //     cards: cardsToUpdate,
+                //     secret: this.state.password
+                // });
             } catch (e) {
                 console.log(e);
             }

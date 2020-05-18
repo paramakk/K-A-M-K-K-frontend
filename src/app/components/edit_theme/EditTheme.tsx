@@ -3,12 +3,11 @@ import "./EditTheme.scss";
 import TextInput from "../common/text_input/TextInput";
 import Button from "../common/button/Button";
 import BasePage from "../common/base_page/BasePage";
-import { withRouter, RouteComponentProps, Link } from "react-router-dom";
-import mockCategory from "../category/mock/mockCategory";
-import mockTheme from "../theme/mock/mockTheme";
+import { withRouter, RouteComponentProps } from "react-router-dom";
+import { api } from "../../../utils/Api";
 const get = require("lodash/get");
 
-type Props = {} & RouteComponentProps<{ id: string }>;
+type Props = {} & RouteComponentProps<{ id: string; id2: string }>;
 
 type State = {
     name: string;
@@ -23,7 +22,7 @@ class EditTheme extends React.PureComponent<Props, State> {
 
     async componentDidMount() {
         if (this.props.match.params.id) {
-            const theme = await mockTheme.get(`/themes/${this.props.match.params.id}`);
+            const theme = await api.get(`/themes/${this.props.match.params.id}`);
             this.setState({ name: theme.data.name, isLoading: false });
         } else {
             this.setState({ isLoading: false });
@@ -39,7 +38,16 @@ class EditTheme extends React.PureComponent<Props, State> {
                 {!isLoading && (
                     <>
                         <TextInput label="Név" value={name} onChange={e => this.setState({ name: e.target.value })} />
-                        <Button>Mentés</Button>
+                        <Button
+                            onClick={() =>
+                                api.post("/themes", {
+                                    title: this.state.name,
+                                    category: Number(this.props.match.params.id2)
+                                })
+                            }
+                        >
+                            Mentés
+                        </Button>
                     </>
                 )}
             </BasePage>

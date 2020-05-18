@@ -14,7 +14,7 @@ export type CardGroupType = {
 
 export type ThemeType = {
     id: number;
-    name: string;
+    title: string;
     author: string;
     createdAt: string;
     cardGroups: CardGroupType[]
@@ -23,7 +23,7 @@ export type ThemeType = {
 
 export type CategoryType = {
     id: number;
-    name: string;
+    title: string;
     description: string;
     themes: ThemeType[];
 };

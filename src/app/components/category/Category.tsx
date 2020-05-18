@@ -3,8 +3,9 @@ import "./Category.scss";
 import BasePage from "../common/base_page/BasePage";
 import { withRouter, RouteComponentProps, Link } from "react-router-dom";
 import { CategoryType, ThemeType } from "../../../types/ApiTypes";
-import mockCategory from "./mock/mockCategory";
-import { EditIcon, PlusCircleIcon, TrashIcon } from "react-line-awesome";
+import { PlusCircleIcon } from "react-line-awesome";
+import ThemeCard from "../common/cards/theme_card/ThemeCard";
+import {api} from "../../../utils/Api";
 const get = require("lodash/get");
 
 type Props = {} & RouteComponentProps<{ id: string }>;
@@ -21,17 +22,9 @@ class Category extends React.PureComponent<Props, State> {
     };
 
     async componentDidMount() {
-        const category = await mockCategory.get(`/categories/${this.props.match.params.id}`);
+        const category = await api.get(`/categories/${this.props.match.params.id}`);
         this.setState({ category: category.data, isLoading: false });
     }
-
-    onDeleteTheme = (id: number) => {
-        try{
-            mockCategory.delete(`/themes/${id}`);
-        }catch (e) {
-            console.error(e);
-        }
-    };
 
     render() {
         const { category, isLoading } = this.state;
@@ -39,27 +32,14 @@ class Category extends React.PureComponent<Props, State> {
             <BasePage className="Category">
                 {!isLoading && category && (
                     <>
-                        <h1 className="page-title">{category.name}</h1>
+                        <h1 className="page-title">{category.title}</h1>
                         <div className="page-subtitle">
                             {category.description} Az alábbi témákból választhatsz, és megnézheted az egyes tanulható
                             kártyacsoportot.
                         </div>
                         <div className="themes">
                             {get(category, "themes", []).map((theme: ThemeType) => (
-                                <div className="theme">
-                                    <div className="author">
-                                        {theme.author} - {theme.createdAt}
-                                    </div>
-                                    <Link to={`/temak/${theme.id}`}>
-                                        <div className="label">{theme.name}</div>
-                                    </Link>
-                                    <div className="delete" onClick={() => this.onDeleteTheme(theme.id)}>
-                                        <TrashIcon />
-                                    </div>
-                                    <Link className="edit" to={`/temak/${theme.id}/szerkeztes`}>
-                                        <EditIcon />
-                                    </Link>
-                                </div>
+                                <ThemeCard theme={theme} />
                             ))}
                             <div className="theme add">
                                 <Link to="/temak/hozzaadas">
