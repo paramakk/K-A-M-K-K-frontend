@@ -8,33 +8,28 @@ const mockCardGroup = new MockAxios<CardGroupType>({
     cards: [
         {
             id: 100,
-            question: "How 'bout that??",
-            answer: "This is it"
+            question: "Mikor volt István, királlyá koronázása?",
+            answer: "1001. jan. 1."
         },
         {
-            id: 100,
-            question: "Yolo swegaratty??",
-            answer: "Its me"
+            id: 101,
+            question: "Kik voltak a Küklopszok a görög mitológiában?",
+            answer: "egyszemű óriások"
         },
         {
-            id: 100,
-            question: "Ez a harmadik kerdes??",
-            answer: "Maybe"
+            id: 103,
+            question: "Ki volt a második honalapító?",
+            answer: "IV. Béla"
         },
         {
-            id: 100,
-            question: "A pápa hangosan szokott köszönni??",
-            answer: "Tuti"
+            id: 104,
+            question: "Mikor alapították a Pannonhalmi apátságot?",
+            answer: "996-ban"
         },
         {
-            id: 100,
-            question: "Git-Home_subject-page??",
-            answer: "Da da"
-        },
-        {
-            id: 100,
-            question: "M??",
-            answer: "DDDD"
+            id: 102,
+            question: "Ki volt Dzsingisz kán?",
+            answer: "mongol császár"
         }
     ]
 });
