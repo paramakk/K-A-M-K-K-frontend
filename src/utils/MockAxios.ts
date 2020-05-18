@@ -50,6 +50,10 @@ class MockAxios<ResponseDataType> {
         return MockAxios.createResponse<ResponseDataType>("PATCH", url, data, this.responseData);
     }
 
+    public delete(url: string): Promise<AxiosResponse<ResponseDataType>> {
+        return MockAxios.createResponse<ResponseDataType>("DELETE", url, null, this.responseData);
+    }
+
     public put(url: string, data: any): Promise<AxiosResponse<ResponseDataType>> {
         return MockAxios.createResponse<ResponseDataType>("PUT", url, data, this.responseData, 201, "Created");
     }

@@ -1,0 +1,41 @@
+.Button {
+  font-size: 19px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  letter-spacing: normal;
+  text-align: center;
+  padding: 15px;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1C6EA4;
+
+  &.small {
+    padding: 5px;
+    font-size: 16px;
+    .loading-icon {
+      height: 20px;
+    }
+  }
+  &:hover {
+      background-color: cornflowerblue;
+  }
+  &.loading {
+    display: flex;
+    justify-content: center;
+    padding: 4px 0;
+  }
+  &.disabled {
+    background-color: lightgray;
+    cursor: not-allowed;
+  }
+  .loading-icon {
+    height: 45px;
+  }
+}

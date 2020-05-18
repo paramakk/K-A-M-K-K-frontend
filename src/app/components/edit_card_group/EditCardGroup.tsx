@@ -1,11 +1,16 @@
 import * as React from "react";
-import "./EditSubject.scss";
+import "./EditCardGroup.scss";
 import TextInput from "../common/text_input/TextInput";
-import mockCardGroup from "../learning/mock/mockCardGroup";
 import { ChangeEvent, ComponentType } from "react";
-import { withRouter } from "react-router-dom";
+import { RouteComponentProps, withRouter } from "react-router-dom";
 import { api } from "../../../utils/Api";
 import { CardGroupType } from "../../../types/ApiTypes";
+import Button from "../common/button/Button";
+import BasePage from "../common/base_page/BasePage";
+import { PlusCircleIcon, PlusIcon } from "react-line-awesome";
+import mockCardGroup from "../learning/mock/mockCardGroup";
+
+const get = require("lodash/get");
 
 type CardType = {
     id: number;
@@ -15,7 +20,7 @@ type CardType = {
     added?: boolean;
 };
 
-type Props = {} & any;
+type Props = {} & RouteComponentProps<{ id: string }>;
 
 type State = {
     isLoading: boolean;
@@ -24,7 +29,7 @@ type State = {
     name: string;
 };
 
-class EditSubject extends React.PureComponent<Props, State> {
+class EditCardGroup extends React.PureComponent<Props, State> {
     state: State = {
         isLoading: true,
         cards: [],
@@ -33,13 +38,13 @@ class EditSubject extends React.PureComponent<Props, State> {
     };
 
     componentDidMount(): void {
-        this.queryCards();
+        if (get(this.props, "match.params.id", false)) this.queryCards();
     }
 
     queryCards = () => {
         this.setState({ isLoading: true }, async () => {
-            const response: CardGroupType = await api.get(`card-groups/${this.props.match.params.id}`);
-            this.setState({ cards: response.cards, name: response.name, isLoading: false });
+            const { data } = await mockCardGroup.get(`card-groups/${this.props.match.params.id}`);
+            this.setState({ cards: data.cards, name: data.name, isLoading: false });
         });
     };
 
@@ -84,7 +89,7 @@ class EditSubject extends React.PureComponent<Props, State> {
     render() {
         const { cards, password } = this.state;
         return (
-            <div className="EditSubject">
+            <BasePage className="EditCardGroup" type="narrow">
                 <TextInput
                     label="Név"
                     value={this.state.name}
@@ -101,7 +106,8 @@ class EditSubject extends React.PureComponent<Props, State> {
                         </div>
                     </div>
                 ))}
-                <button
+                <Button
+                    size="small"
                     onClick={() =>
                         this.setState({
                             cards: [
@@ -111,18 +117,18 @@ class EditSubject extends React.PureComponent<Props, State> {
                         })
                     }
                 >
-                    Hozzáad
-                </button>
+                    <PlusCircleIcon />
+                </Button>
                 <TextInput
                     label="Jelszó"
                     value={password}
                     type="password"
                     onChange={e => this.setState({ password: e.target.value })}
                 />
-                <button onClick={this.saveCards}>Mentés</button>
-            </div>
+                <Button onClick={this.saveCards}>Mentés</Button>
+            </BasePage>
         );
     }
 }
 
-export default withRouter(EditSubject as any) as ComponentType;
+export default withRouter(EditCardGroup as any) as ComponentType;

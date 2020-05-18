@@ -1,0 +1,19 @@
+.Header{
+  position: fixed;
+  height: 40px;
+  width: 100%;
+  left: 0;
+  top: 0;
+  background-color: #1C6EA4;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  > *{
+    margin-right: 30px;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
