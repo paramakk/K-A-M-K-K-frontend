@@ -1,0 +1,19 @@
+.Categories {
+  .section-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 2%;
+    .SectionCard {
+      .link {
+        font-size: 12px;
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+        color: #1C6EA4;
+        &:hover{
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

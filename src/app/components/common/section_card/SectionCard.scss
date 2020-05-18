@@ -1,0 +1,15 @@
+.SectionCard {
+  border-radius: 5px;
+  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.14);
+  background-color: white;
+  padding: 15px;
+  margin: 15px 0;
+  > .title {
+    font-weight: bold;
+    border-bottom: 1px solid;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    text-align: left;
+    font-size: 18px;
+  }
+}

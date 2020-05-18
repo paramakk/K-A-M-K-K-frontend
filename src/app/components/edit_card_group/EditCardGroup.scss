@@ -1,0 +1,15 @@
+.EditCardGroup{
+  .Button{
+    margin: 15px 0;
+  }
+  .card{
+    border-radius: 5px;
+    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.14);
+    background-color: white;
+    padding: 15px;
+    margin: 10px 0;
+    .title{
+      font-size: 18px;
+    }
+  }
+}

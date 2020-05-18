@@ -3,6 +3,7 @@ import "./HomePage.scss";
 import { Link } from "react-router-dom";
 import { api } from "../../../utils/Api";
 import { ThemeType } from "../../../types/ApiTypes";
+import BasePage from "../common/base_page/BasePage";
 
 type Props = {};
 
@@ -23,7 +24,7 @@ class HomePage extends React.PureComponent<Props, State> {
 
     render() {
         return (
-            <div className="HomePage">
+            <BasePage className="HomePage">
                 <p>
                     Ez egy webes alkalmazás, ami segít a tanulásban kártyák segítségével. Az alkalmazás lényege, hogy
                     bárki létrehozhat tanulókártyákat kategóriákba szedve, amit a létrehozó fél és az alkalmazás többi
@@ -40,7 +41,7 @@ class HomePage extends React.PureComponent<Props, State> {
                             {theme.name}
                         </Link>
                     ))}
-            </div>
+            </BasePage>
         );
     }
 }

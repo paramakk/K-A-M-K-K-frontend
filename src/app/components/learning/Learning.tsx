@@ -4,6 +4,7 @@ import mockCardGroup from "./mock/mockCardGroup";
 import { withRouter } from "react-router-dom";
 import { ComponentType } from "react";
 import { Link } from "react-router-dom";
+import BasePage from "../common/base_page/BasePage";
 
 type Props = any;
 
@@ -35,7 +36,7 @@ class Learning extends React.PureComponent<Props, State> {
     queryQuestions = () => {
         this.setState({ isLoading: true }, async () => {
             const response = await mockCardGroup.get("card");
-            this.setState({ questionAnswers: response.data as QuestionAnswer[], isLoading: false });
+            this.setState({ questionAnswers: response.data.cards, isLoading: false });
         });
     };
 
@@ -60,13 +61,7 @@ class Learning extends React.PureComponent<Props, State> {
             );
 
         return (
-            <div className="Learning">
-                <Link to="/HomePage" className="button" style={{ position: "absolute" }}>
-                    Vissza a főoldalra
-                </Link>
-                <Link to="/temak/1" className="button">
-                    Vissza a témához
-                </Link>
+            <BasePage className="Learning" type="narrow">
                 <div className="points">{pointsRepresentative}</div>
                 <div className="card-wrapper">
                     {!this.state.isLoading && this.state.questionAnswers[this.state.finished] && (
@@ -86,7 +81,7 @@ class Learning extends React.PureComponent<Props, State> {
                         </div>
                     )}
                 </div>
-            </div>
+            </BasePage>
         );
     }
 }
