@@ -25,16 +25,14 @@ class HomePage extends React.PureComponent<Props, State> {
     render() {
         return (
             <BasePage className="HomePage">
-                <p>
+                <p className={"details"}>
                     Ez egy webes alkalmazás, ami segít a tanulásban kártyák segítségével. Az alkalmazás lényege, hogy
                     bárki létrehozhat tanulókártyákat kategóriákba szedve, amit a létrehozó fél és az alkalmazás többi
                     felhasználója is szabadon segítségül hívhat tanulása során. Az alkalmazás a jól ismert tanulókártyás
                     módszereken felül pontrendszert alkalmaz a következő kártyák előfordulásának gyakoriságának
                     meghatározására.
                 </p>
-                <button>Témák</button>
-                <button>Új téma létrehozása</button>
-                <p>Ajánlott témák: </p>
+                <p className={"suggestions"}>Ajánlott témák: </p>
                 {!this.state.isLoading &&
                     this.state.themes.map(theme => (
                         <Link key={theme.id} to={`/temak/${theme.id}`}>

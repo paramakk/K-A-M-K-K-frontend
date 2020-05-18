@@ -3,7 +3,6 @@ import "./Learning.scss";
 import mockCardGroup from "./mock/mockCardGroup";
 import { withRouter } from "react-router-dom";
 import { ComponentType } from "react";
-import { Link } from "react-router-dom";
 import BasePage from "../common/base_page/BasePage";
 
 type Props = any;
@@ -69,15 +68,15 @@ class Learning extends React.PureComponent<Props, State> {
                             <div className="content" onClick={() => this.setState({ flipped: !this.state.flipped })}>
                                 {!this.state.flipped ? (
                                     <div className="question">
-                                        {this.state.questionAnswers[this.state.finished].question}
+                                        Kérdés: {this.state.questionAnswers[this.state.finished].question}
                                     </div>
                                 ) : (
                                     <div className="answer">
-                                        {this.state.questionAnswers[this.state.finished].answer}
+                                        Válasz: {this.state.questionAnswers[this.state.finished].answer}
                                     </div>
                                 )}
                             </div>
-                            {this.state.flipped && <div className="ratings">{ratings}</div>}
+                           {this.state.flipped && <div className="ratings">Értékelés: {ratings}</div>}
                         </div>
                     )}
                 </div>
