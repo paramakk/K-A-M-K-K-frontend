@@ -51,10 +51,10 @@ class Theme extends React.PureComponent<Props, State> {
                                     <>
                                         <div className="card-group">
                                             <div className="author">
-                                                {theme.author} - {theme.createdAt}
+                                                {theme.createdAt}
                                             </div>
                                             <Link key={cardGroup.id} className="label" to={`/tanulas/${cardGroup.id}`}>
-                                                {cardGroup.name}
+                                                {cardGroup.author} - {cardGroup.name}
                                             </Link>
                                             <div className="card-count">{cardGroup.cards && cardGroup.cards.length} kártya</div>
                                             <div

@@ -26,6 +26,7 @@ type State = {
     cards: CardType[];
     password: string;
     name: string;
+    author: string;
 };
 
 class EditCardGroup extends React.PureComponent<Props, State> {
@@ -33,7 +34,8 @@ class EditCardGroup extends React.PureComponent<Props, State> {
         isLoading: true,
         cards: [],
         password: "",
-        name: ""
+        name: "",
+        author: ""
     };
 
     componentDidMount(): void {
@@ -97,6 +99,11 @@ class EditCardGroup extends React.PureComponent<Props, State> {
                     label="Név"
                     value={this.state.name}
                     onChange={e => this.setState({ name: e.target.value })}
+                />
+                <TextInput
+                    label="Szerző neve"
+                    value={this.state.author}
+                    onChange={e => this.setState({ author: e.target.value })}
                 />
                 {cards.map((card, index) => (
                     <div key={card.id} className="card">
