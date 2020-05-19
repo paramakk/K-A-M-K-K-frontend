@@ -30,6 +30,26 @@ class EditTheme extends React.PureComponent<Props, State> {
         this.setState({isLoading: false});
     }
 
+    postThemes = () =>{
+        this.setState({ isLoading: true }, async () => {
+            try {
+                 const resp = await api.post("/themes", {
+                    title: this.state.name,
+    				category:{
+    					id:Number(this.props.match.params.id2)
+    				}
+                 });
+                 if(resp.status === 200){
+                 	window.location.replace('http://localhost:3000/kategoriak');
+                 }
+            } catch (e) {
+                console.log(e);
+            }
+
+            this.setState({ isLoading: false });
+        });
+    };
+
     render() {
         const { match } = this.props;
         const { name, isLoading } = this.state;
@@ -40,13 +60,7 @@ class EditTheme extends React.PureComponent<Props, State> {
                     <>
                         <TextInput label="Név" value={name} onChange={e => this.setState({ name: e.target.value })} />
                         <Button
-                            onClick={() =>
-                                api.post("/themes", {
-                                    title: this.state.name,
-                                    category:{
-                                    	id: Number(this.props.match.params.id2)
-                                    }
-                                })
+                            onClick={() => this.postThemes()
                             }
                         >
                             Mentés

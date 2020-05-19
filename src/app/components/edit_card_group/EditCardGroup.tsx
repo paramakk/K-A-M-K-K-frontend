@@ -57,7 +57,7 @@ class EditCardGroup extends React.PureComponent<Props, State> {
                 if (card.changed) cardsToUpdate.push(card);
             });
             try {
-                 await api.post(`card-groups`, {
+                 const resp = await api.post(`card-groups`, {
                      cards: cardsToAdd,
                      name: this.state.name,
                      theme:{
@@ -66,6 +66,9 @@ class EditCardGroup extends React.PureComponent<Props, State> {
                      secret: this.state.password,
                      author: this.state.author
                  });
+                 if(resp.status === 200){
+                 	window.location.replace('http://localhost:3000/kategoriak');
+                 }
                  await api.patch(`card-groups`, {
                      cards: cardsToUpdate,
                      secret: this.state.password
