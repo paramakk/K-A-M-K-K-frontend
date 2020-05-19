@@ -4,6 +4,7 @@ import mockCardGroup from "./mock/mockCardGroup";
 import { withRouter } from "react-router-dom";
 import { ComponentType } from "react";
 import BasePage from "../common/base_page/BasePage";
+import { api } from "../../../utils/Api";
 
 type Props = any;
 
@@ -34,7 +35,7 @@ class Learning extends React.PureComponent<Props, State> {
 
     queryQuestions = () => {
         this.setState({ isLoading: true }, async () => {
-            const response = await mockCardGroup.get("card");
+            const response = await api.get(`/card-groups/${this.props.match.params.id}`);
             this.setState({ questionAnswers: response.data.cards, isLoading: false });
         });
     };

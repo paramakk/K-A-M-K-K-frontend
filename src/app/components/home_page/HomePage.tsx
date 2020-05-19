@@ -4,6 +4,7 @@ import { ThemeType } from "../../../types/ApiTypes";
 import BasePage from "../common/base_page/BasePage";
 import mockThemes from "./mock/mockThemes";
 import ThemeCard from "../common/cards/theme_card/ThemeCard";
+import { api } from "../../../utils/Api";
 
 type Props = {};
 
@@ -18,7 +19,7 @@ class HomePage extends React.PureComponent<Props, State> {
         themes: []
     };
     async componentDidMount() {
-        const themes = await mockThemes.get("/themes/suggestions");
+        const themes = await api.get("/themes/suggestions");
         this.setState({ themes: themes.data, isLoading: false });
     }
 

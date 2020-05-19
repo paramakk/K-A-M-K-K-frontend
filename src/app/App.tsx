@@ -16,7 +16,7 @@ const App = () => {
                 <div>
                     <Switch>
                         <Route path="/tanulas/:id" component={Learning}/>
-                        <Route path="/kartya-csoport/hozzaadas" component={EditCardGroup} />
+                        <Route path="/kartya-csoport/:id/hozzaadas" component={EditCardGroup} />
                         <Route path="/kartya-csoport/:id/szerkesztes" component={EditCardGroup} />
                         <Route path="/temak/:id2/hozzaadas" component={EditTheme} />
                         <Route path="/temak/:id2/szerkesztes/:id" component={EditTheme} />

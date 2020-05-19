@@ -42,7 +42,7 @@ class Category extends React.PureComponent<Props, State> {
                                 <ThemeCard theme={theme} />
                             ))}
                             <div className="theme add">
-                                <Link to="/temak/hozzaadas">
+                                <Link to={`/temak/${this.props.match.params.id}/hozzaadas`}>
                                     <PlusCircleIcon />
                                 </Link>
                             </div>
