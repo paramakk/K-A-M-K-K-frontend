@@ -2,7 +2,6 @@ import * as React from "react";
 import "./HomePage.scss";
 import { ThemeType } from "../../../types/ApiTypes";
 import BasePage from "../common/base_page/BasePage";
-import mockThemes from "./mock/mockThemes";
 import ThemeCard from "../common/cards/theme_card/ThemeCard";
 import { api } from "../../../utils/Api";
 

@@ -6,7 +6,6 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 import Button from "../common/button/Button";
 import BasePage from "../common/base_page/BasePage";
 import { PlusCircleIcon } from "react-line-awesome";
-import mockCardGroup from "../learning/mock/mockCardGroup";
 import { api } from "../../../utils/Api";
 
 const get = require("lodash/get");
@@ -58,15 +57,16 @@ class EditCardGroup extends React.PureComponent<Props, State> {
                 if (card.changed) cardsToUpdate.push(card);
             });
             try {
-                 const responsePost = await api.post(`card-groups`, {
+                 await api.post(`card-groups`, {
                      cards: cardsToAdd,
                      name: this.state.name,
                      theme:{
                      	id:this.props.match.params.id
                      },
-                     secret: this.state.password
+                     secret: this.state.password,
+                     author: this.state.author
                  });
-                 const responsePatch = await api.patch(`card-groups`, {
+                 await api.patch(`card-groups`, {
                      cards: cardsToUpdate,
                      secret: this.state.password
                  });
