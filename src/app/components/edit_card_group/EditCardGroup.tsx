@@ -7,6 +7,7 @@ import Button from "../common/button/Button";
 import BasePage from "../common/base_page/BasePage";
 import { PlusCircleIcon } from "react-line-awesome";
 import mockCardGroup from "../learning/mock/mockCardGroup";
+import { api } from "../../../utils/Api";
 
 const get = require("lodash/get");
 
@@ -41,7 +42,7 @@ class EditCardGroup extends React.PureComponent<Props, State> {
 
     queryCards = () => {
         this.setState({ isLoading: true }, async () => {
-            const { data } = await mockCardGroup.get(`card-groups/${this.props.match.params.id}`);
+            const { data } = await api.get(`card-groups/${this.props.match.params.id}`);
             this.setState({ cards: data.cards, name: data.name, isLoading: false });
         });
     };
@@ -55,14 +56,18 @@ class EditCardGroup extends React.PureComponent<Props, State> {
                 if (card.changed) cardsToUpdate.push(card);
             });
             try {
-                // const responsePost = await api.post(`card-groups/${this.props.match.params.id}`, {
-                //     cards: cardsToAdd,
-                //     secret: this.state.password
-                // });
-                // const responsePatch = await api.patch(`card-groups/${this.props.match.params.id}`, {
-                //     cards: cardsToUpdate,
-                //     secret: this.state.password
-                // });
+                 const responsePost = await api.post(`card-groups`, {
+                     cards: cardsToAdd,
+                     name: this.state.name,
+                     theme:{
+                     	id:this.props.match.params.id
+                     },
+                     secret: this.state.password
+                 });
+                 const responsePatch = await api.patch(`card-groups`, {
+                     cards: cardsToUpdate,
+                     secret: this.state.password
+                 });
             } catch (e) {
                 console.log(e);
             }

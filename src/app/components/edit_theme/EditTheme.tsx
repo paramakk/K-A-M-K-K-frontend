@@ -21,12 +21,13 @@ class EditTheme extends React.PureComponent<Props, State> {
     };
 
     async componentDidMount() {
-        if (this.props.match.params.id) {
-            const theme = await api.get(`/themes/${this.props.match.params.id}`);
-            this.setState({ name: theme.data.name, isLoading: false });
-        } else {
-            this.setState({ isLoading: false });
-        }
+       // if (this.props.match.params.id) {
+         //   const theme = await api.get(`/themes/${this.props.match.params.id}`);
+          //  this.setState({ name: theme.data.name, isLoading: false });
+        //} else {
+         //   this.setState({ isLoading: false });
+        //}
+        this.setState({isLoading: false});
     }
 
     render() {
@@ -42,7 +43,9 @@ class EditTheme extends React.PureComponent<Props, State> {
                             onClick={() =>
                                 api.post("/themes", {
                                     title: this.state.name,
-                                    category: Number(this.props.match.params.id2)
+                                    category:{
+                                    	id: Number(this.props.match.params.id2)
+                                    }
                                 })
                             }
                         >

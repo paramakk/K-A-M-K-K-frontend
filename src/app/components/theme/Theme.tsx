@@ -70,7 +70,7 @@ class Theme extends React.PureComponent<Props, State> {
                                     </>
                                 ))}
                             <div className="card-group add">
-                                <Link to="/kartya-csoport/hozzaadas">
+                                <Link to={`/kartya-csoport/${this.props.match.params.id}/hozzaadas`}>
                                     <PlusCircleIcon />
                                 </Link>
                             </div>
